@@ -24,7 +24,8 @@
 		move $a0, $s0
 		jal testInsere
 		
-		
+		lw $a0, 0($s0)
+		jal posOrdem
 		
 		#volta $sp para o topo da stack
 		move $sp, $fp
