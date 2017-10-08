@@ -24,7 +24,9 @@
 		move $a0, $s0
 		jal testInsere
 		
+		#Carrega em a0 o endereço da raiz da arvore
 		lw $a0, 0($s0)
+		#Executa o percorrimento pos-Ordem
 		jal posOrdem
 		
 		#volta $sp para o topo da stack
