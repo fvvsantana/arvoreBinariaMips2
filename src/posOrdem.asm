@@ -66,17 +66,17 @@
 				#Retorna para o ponto de onde parou na execucao anterior
 				jr $ra
 				
-				printDot:
-					#Imprime o ponto
-					la $a0, dot
-					li $v0, 4
-					syscall
+			printDot:
+				#Imprime o ponto
+				la $a0, dot
+				li $v0, 4
+				syscall
 					
-					#Volta o valor de fp da main
-					lw $fp, 0($sp)
+				#Volta o valor de fp da main
+				lw $fp, 0($sp)
 					
-					#Desaloca meoria da stack
-					add $sp, $sp, 4
+				#Desaloca meoria da stack
+				add $sp, $sp, 4
 					
-					#Retorna para o ponto de onde parou na execucao anterior
-					jr $ra
+				#Retorna para o ponto de onde parou na execucao anterior
+				jr $ra
