@@ -1,10 +1,19 @@
 .data
 	virgula: .asciiz ","
 	ponto: .asciiz "."
+	titulopreordem: .asciiz "preOrdem:"
 
 .text
 	.globl preOrdem
-	preOrdem:#(No* algum)
+	
+	preOrdem:
+		move $t0, $a0
+		li $v0, 4
+		la $a0, titulopreordem
+		syscall
+		
+		move $a0, $t0
+	rec:
 		
 		#if (!$a0) vai para fim
 		beq $a0, -1, fim
@@ -40,21 +49,14 @@
 		#$a0 = $a0->esquerda
 		move $a0, 4($a0)
 		#chama a função
-		jal preOrdem
+		jal rec
 		
 		
 		
 		#$a0 = $a0->direita
 		move $a0, 8($a0)
 		#chama a função
-		jal preOrdem
-		
-		
-		
-		
-		
-	
-	
+		jal rec
 	
 	
 	fim:
