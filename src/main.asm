@@ -2,35 +2,21 @@
 	opcoes:	.asciiz "\nDigite o numero correspondente a operacao desejada:\n 1- Insercao\n 2- Percorrimento pre-ordem\n 3- Percorrimento em-ordem\n 4- Percorrimento pos-ordem\n 5- Sair\n"
 	erro:	.asciiz "\nValor invalido, tente novamente."
 	valor:	.asciiz "Digite o valor:\n"
+	
 .text
 	.globl main
 	main:
-		#salva o topo da stack
-		move $fp, $sp
-		
-		#typedef struct{
-		#	No* raiz;
-		#}Arvore;
-		#aloca espaco para o ponteiro que aponta para o no raiz da arvore 
-		#(No* raiz)
+		# aloca espaco para o ponteiro que aponta para o no raiz da arvore 
 		sub $sp, $sp, 4
 		
-		#$s0 aponta para a raiz
+		# $s0 aponta para a raiz
 		move $s0, $sp
 		
-		#faz a raiz apontar pra nulo
+		# inicia a arvore
 		move $a0, $s0
 		jal criaArvore
 		
-		j menu
-		
-		#testa alocacao
-		#move $a0, $s0
-		#jal testInsere
-		
-		#volta $sp para o topo da stack
-		move $sp, $fp
-		
+	# funcao que imprime continuamente o menu
 	menu:
 		# imprime as opcoes
 		li $v0, 4
@@ -68,6 +54,7 @@
 		# volta para o comeco
 		j menu
 		
+	# solicita um valor e insere na arvore
 	digitaValor:
 		# imprime string
 		li $v0, 4
@@ -89,7 +76,7 @@
 		j menu
 		
 	sair:
-		#exit
+		# exit
 		li $v0, 10
 		syscall
 		
