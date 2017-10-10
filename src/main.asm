@@ -1,3 +1,16 @@
+# Trabalho 1 da disciplina SSC0610 - Organizacao de Computadores Digitais I
+# Docente: Prof. Dr. Francisco Jose Monaco
+# Monitor PEEG: Vitor P. Ribeiro
+# Monitor: Guilherme Prearo
+#
+# É recomendado a leitura previa do arquivo "Relatorio.pdf"
+#
+# Membros do grupo:
+#  Adilson Vital Junior - 9278160
+#  Cesar Augusto Lima - 9771525
+#  Flavio Vinicius Vieira Santana - 9866552
+#  Leonardo Carneiro Feltran - 9807430
+
 .data
 	opcoes:	.asciiz "\nDigite o numero correspondente a operacao desejada:\n 1- Insercao\n 2- Percorrimento pre-ordem\n 3- Percorrimento em-ordem\n 4- Percorrimento pos-ordem\n 5- Sair\n"
 	erro:	.asciiz "\nValor invalido, tente novamente."
