@@ -1,6 +1,10 @@
 .data
 	newline: .asciiz "\n"
 	
+	# variavel para armazenar o tamanho da arvore
+	.globl tamanho
+	tamanho: .word 0
+	
 .text		
 	.globl criaArvore
 	criaArvore:#(No** arvore)
@@ -41,6 +45,11 @@
 			li $t0, -1
 			sw $t0, 4($v0) #filhoEsq = -1
 			sw $t0, 8($v0) #filhoDir = -1
+			
+			#atualiza o tamanho da arvore
+			lw $t0, tamanho
+			addi $t0, $t0, 1
+			sw $t0, tamanho
 				 
 			#aponta raiz para o no alocado
 			sw $v0, ($a1)
@@ -57,12 +66,11 @@
 				add $a1, $t0, 4 # $a1 = &(raiz->filhoEsq)
 				jal insere
 				
-				j then2
+				j then
 			else2: #senao, insira na direita
 				add $a1, $t0, 8 # $a1 = &(raiz->filhoDir)
 				jal insere
 			
-			then2:
 		then:
 		
 		#recupera endereco de retorno
@@ -77,7 +85,7 @@
 		sub $sp, $sp, 4
 		sw $fp, 0($sp)
 		move $fp, $sp
-		#salva o endereço de retorno 
+		#salva o endereco de retorno 
 		sub $sp, $sp, 8
 		sw $ra, -4($fp)
 		sw $a0, -8($fp)
