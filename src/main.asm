@@ -33,7 +33,7 @@
 		# define o arguemento padrao para a maioria das funcoes
 		lw $a0, ($sp)
 		
-		# verifica cada valor possivel
+		# verifica cada valor possivel e chama a funcao adequada
 		# digitar:
 		beq $s1, 1, digitaValor
 		

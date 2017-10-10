@@ -1,6 +1,4 @@
 .data
-	newline: .asciiz "\n"
-	
 	# variavel para armazenar o tamanho da arvore
 	.globl tamanho
 	tamanho: .word 0

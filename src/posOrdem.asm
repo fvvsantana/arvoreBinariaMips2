@@ -1,6 +1,6 @@
 .data
 	title: .asciiz "\nPos-ordem:\n"
-	comma: .asciiz ", "
+	comma: .asciiz ","
 	dot:   .asciiz ".\n"
 .text
 	.globl posOrdem
