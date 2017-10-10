@@ -41,7 +41,10 @@
 		beq $s1, 2, preOrdem 
 		
 		# em ordem:
-		beq $s1, 3, emOrdem 
+		beq $s1, 3, emOrdem
+		
+		# pos ordem:
+		beq $s1, 4, posOrdem
 		
 		# sair:
 		beq $s1, 5, sair
