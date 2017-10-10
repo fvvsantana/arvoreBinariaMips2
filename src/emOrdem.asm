@@ -1,7 +1,7 @@
 .data
-	titulo:	 .asciiz "\nEm ordem:\n"
+	titulo:	 .asciiz "\nEm-ordem:\n"
 	virgula: .asciiz ","
-	ponto:	 .asciiz "."
+	ponto:	 .asciiz ".\n"
 
 .text
 	.globl emOrdem

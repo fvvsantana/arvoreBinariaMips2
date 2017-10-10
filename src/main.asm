@@ -1,5 +1,5 @@
 .data
-	opcoes:	.asciiz "\n\nDigite o numero correspondente a operacao desejada:\n 1- Insercao\n 2- Percorrimento pre-ordem\n 3- Percorrimento em-ordem\n 4- Percorrimento pos-ordem\n 5- Sair\n"
+	opcoes:	.asciiz "\nDigite o numero correspondente a operacao desejada:\n 1- Insercao\n 2- Percorrimento pre-ordem\n 3- Percorrimento em-ordem\n 4- Percorrimento pos-ordem\n 5- Sair\n"
 	erro:	.asciiz "\nValor invalido, tente novamente."
 	valor:	.asciiz "Digite o valor:\n"
 .text
