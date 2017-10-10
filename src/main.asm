@@ -51,6 +51,9 @@
 		# digitar:
 		beq $s1, 1, digitaValor
 		
+		# pre ordem:
+		beq $s1, 2, preOrdem 
+		
 		# em ordem:
 		beq $s1, 3, emOrdem 
 		
