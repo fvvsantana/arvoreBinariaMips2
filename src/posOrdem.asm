@@ -4,7 +4,11 @@
 .text
 	.globl posOrdem
 	
-		posOrdem:	
+		posOrdem:
+			#Verifica se o endereco analizado atualmente e invalido
+			#Caso afirmativo, termina a execução
+			beq $a0, -1, exit
+			
 			#Aloca um espaço na stack		
 			sub $sp, $sp, 4
 			
@@ -14,13 +18,15 @@
 			#Atualiza o valor de fp
 			move $fp, $sp
 			
+			j do
+			
 			exec:
 				#Verifica se o endereco analizado atualmente e invalido
 				#Caso afirmativo, termina a execução
 				bne $a0, -1, do
 			
 				#Retorna para a execução anterior
-				jr $ra
+				j exit
 			
 			do:
 				
@@ -64,7 +70,7 @@
 				syscall
 				
 				#Retorna para o ponto de onde parou na execucao anterior
-				jr $ra
+				j exit
 				
 			printDot:
 				#Imprime o ponto
@@ -77,6 +83,7 @@
 					
 				#Desaloca meoria da stack
 				add $sp, $sp, 4
-					
+			
+			exit:
 				#Retorna para o ponto de onde parou na execucao anterior
 				jr $ra
