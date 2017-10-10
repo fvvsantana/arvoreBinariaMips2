@@ -1,5 +1,6 @@
 .data
 	newline: .asciiz "\n"
+	virgula: .asciiz ","
 	
 	# variavel para armazenar o tamanho da arvore
 	.globl tamanho
@@ -119,53 +120,74 @@
 		lw $a1, -8($fp)
 		jal insere
 		
-		#imprime arvore:
+		lw $a0, ($a1)
 		
-		#raiz
-		lw $a1, -8($fp) #a1 = &(raiz)	
-		lw $t0, ($a1) #$t0 = raiz
-		lw $t1, ($t0) #$t1 = raiz->elem
+		preOrdem:
 		
-		#imprime elem
-		move $a0, $t1
+		
+		#if (!$a0) vai para fim
+		beq $a0, -1, fim
+		
+		#else{
+		#aloca espaço na stack
+		sub $sp, $sp, 4
+		#guarda o endereço de retorno
+		sw $ra, ($sp)
+		
+		#aloca espaço na stack
+		sub $sp, $sp, 4
+		#guarda o nó na pilha
+		sw  $a0, ($sp)
+		
+		#printa a cabeça do nó :
+		
+		#salva a0 em t0
+		move $t0, $a0
+		#$a0 = nó cabeça
+		lw $a0, ($a0)
+		#printa
 		li $v0, 1
 		syscall
 		
-		#imprime newline
+		#$t0 retorna a $a0
+		move $a0, $t0
+		
+		#printa a virgula:
 		li $v0, 4
-		la $a0, newline
+		#guarda a0 em t0
+		move $t0, $a0
+		#poem a virgula em a0
+		la $a0, virgula
+		#printa
 		syscall
+		#retorna $t0 em $a0
+		move $a0, $t0
 		
-		#filhoEsq
-		add $t1, $t0, 4 #$t1 = &(raiz->filhoEsq)
-		lw $t1, ($t1) #$t1 = raiz->filhoEsq
-		lw $t1, ($t1) #$t1 = raiz->filhoEsq->elem
 		
-		#imprime elem
-		move $a0, $t1
-		li $v0, 1
-		syscall
 		
-		#imprime newline
-		li $v0, 4
-		la $a0, newline
-		syscall
+		#$a0 = $a0->esquerda
+		lw $a0, 4($a0)
+		#chama a função
+		jal preOrdem
 		
-		#filhoDir
-		add $t1, $t0, 8 #$t1 = &(raiz->filhoDir)
-		lw $t1, ($t1) #$t1 = raiz->filhoDir
-		lw $t1, ($t1) #$t1 = raiz->filhoDir->elem
+		#recupera endereço
+		lw $a0, ($sp)
+		#desaloca stack
+		add $sp, $sp, 4
 		
-		#imprime elem
-		move $a0, $t1
-		li $v0, 1
-		syscall
 		
-		#imprime newline
-		li $v0, 4
-		la $a0, newline
-		syscall
+		#$a0 = $a0->direita
+		lw $a0, 8($a0)
+		#chama a função
+		jal preOrdem
 		
+		#recupera o ra
+		lw $ra , ($sp)
+		#desaloca stack
+		add $sp, $sp, 4
+	
+	fim:
+		jr $ra
 		
 		#retorma endereco de retorno
 		lw $ra, -4($fp)
